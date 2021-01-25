@@ -2,7 +2,7 @@
 
 
 unsigned long rot(unsigned long num, int rotate ){
-	return (num << rotate)|(num >> size_of(num)-rotate);
+	return (num << rotate)|(num >> sizeof(num)-rotate);
 }
 
 unsigned long ** keccakfround(unsigned long  a[][5], unsigned long r){
@@ -77,3 +77,31 @@ unsigned long ** keccakfround(unsigned long  a[][5], unsigned long r){
 	a[0][0] = a[0][0] ^ round_consts[r];
 	
 }
+
+
+
+unsigned long * keccakf(unsigned long * bl ){
+	
+	unsigned long ** state = malloc(25 * sizeof(unsigned long));
+	for(int i=0;i<5;i++){
+		for(int j=0;j<5;j++){
+			state[i][j] = *(bl+i+j);
+		}
+	}
+	
+	for(int i=0;i<24;i++){
+		state = keccakfround(state, i);
+	}
+	
+	unsigned long * res = malloc(25*sizeof(unsigned long));
+
+	for(int i=0;i<5;i++){
+		for(int j=0;j<5;j++){
+			*(res+i+j) = state[i][j];
+		}
+	}
+
+	return res;
+
+}
+
