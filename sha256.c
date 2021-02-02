@@ -3,6 +3,8 @@
 
 #define STATE_SIZE 5
 #define ROUNDS 24
+#define CBLOCKS 8
+#define RBLOCKS 17
 
 unsigned long rot(unsigned long num, int rotate ){
 	return (num << rotate)|(num >> (sizeof(num)-rotate));
@@ -109,6 +111,44 @@ unsigned long * keccakf(unsigned long * bl ){
 
 }
 
+void add_block(unsigned long * bl, unsigned long * in, int r){
+	for(int i=0;i<r;i++){
+		bl[i] ^= in[i]; 
+	}
+}
+
+unsigned long * sponge(unsigned long * in, int insize, int r, int c, int outsize){
+	unsigned long * bl = calloc(r+c,sizeof(unsigned long));
+	//absorbing
+	for(int i=0;i<insize;i+=r){
+		add_block(bl,in+i,r);
+		bl = keccakf(bl);
+	}	
+
+	//squeezing
+	unsigned long * out = malloc(outsize * r * sizeof(unsigned long));
+	for(int i=0;i<outsize;i++){
+		for(int j=0;j<r;j++){
+			out[i*r+j] = bl[j];
+		}
+
+		bl = keccakf(bl);
+	}
+
+	free(bl);
+	return out;	
+}
+
 int main(){
-return 0;
+	unsigned long * in = malloc(17 * sizeof(unsigned long));	
+	for(int i=0;i<17;i++){
+		in[i] = 0x1010101010101010;
+	}
+	
+	unsigned long * hash = sponge(in,17,RBLOCKS,CBLOCKS,17);
+
+	for(int i=0;i<4;i++){
+		printf("%lx",hash[i]);
+	}
+	return 0;
 }
