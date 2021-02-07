@@ -35,7 +35,7 @@ after compiling the implementation with the gmp library, use the arguments like 
 * The Wikipedia article on "Lagrange Polynomials" - https://en.wikipedia.org/wiki/Lagrange_polynomial
 * The GMP library ant it's Documentation - https://gmplib.org/
 
-## Todo
+### Todo
 * add program activity to SHA3har.
 * implement public key cryptographic functions (ElGamal or Rabin Cryptosystems)
 * add stream cipher option to SHA3har.
