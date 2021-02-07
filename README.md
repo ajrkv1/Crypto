@@ -12,7 +12,7 @@ Here's a list of what's in here right now:
  More information on those ahead!
  
  ### SHA3har 
- Once apon a time, there was a guy named Shahar. Shahar wanted to implement the SHA-3 hashing algorithm on his own, so he tried. He studied and worked on the implementaion, until everything was ready! But, when he tried it, he found out something horrable! it does not give the same hash as the SHA3 algorithm! after concluding (or to be more precise, hoping) that the issue is in the padding scheme, he decided to rename the hashing function from "SHA3" to "SHA3har" (which stands for "SHA3? hmm... ain't really"), and use it. 
+ Once apon a time, there was a guy named Shahar. Shahar wanted to implement the SHA-3 hashing algorithm on his own, so he tried. He studied and worked on the implementaion, until everything was ready! But, when he tried it, he found out something horrible! it does not give the same hash as the SHA3 algorithm! after concluding (or to be more precise, hoping) that the issue is in the padding scheme, he decided to rename the hashing function from "SHA3" to "SHA3har" (which stands for "SHA3? hmm... ain't really"), and use it. 
  
  The 'SHA3har' algorithm is a shot at implementing the Keccak algorithm, which is more broadly named "SHA3". It is built as a sponge construction function, which can be used as a hash function, a stream cipher, or a random bit generator.
  
