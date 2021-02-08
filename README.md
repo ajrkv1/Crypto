@@ -28,7 +28,7 @@ For a group of n shares, and a thresh of r shares, this is done by creating a ra
 In my implementation, I use the "Lagrange Interpolation" to interpolate the secret from r shares, in a finite field of mod 2^251-1 (the 13th Mersenne prime. It was chosen so a 512 bit key could be distributed to shares). For computations, I use the GMP library. Every constant in the polynomial is up to 256 bits, and so are the random points taken for the shares. 
  
  #### How to use it?
-after compiling the implementation with the gmp library, use the arguments like this: ```g [Thresh] [Share amount] [Secret]```, where ```Thresh``` is the minimal number of shares needed to uncover the secret, ```Share amount``` is the minimal amount of shares you'd want to create, and ```Secret``` is the secret you want to share, in Hexadecimal. **Note:** ```Secret``` must be a hexadcimal shorter than 520 bits. The program will print ```Share amount``` of shares in the format of (x,y), where w and y are hexadecimals. to uncover the secret, put enough shares into a file in a format of "(x,y)", where each share is in a new line, and use the arguments ```v [share file] [share amount]```. the program will print the secret (if the shares are correct and were entered correctly) 
+after compiling the implementation with the gmp library, use the arguments like this: ```g [Thresh] [Share amount] [Secret]```, where ```Thresh``` is the minimal number of shares needed to uncover the secret, ```Share amount``` is the minimal amount of shares you'd want to create, and ```Secret``` is the secret you want to share, in Hexadecimal. **Note:** ```Secret``` must be a hexadcimal shorter than 520 bits. The program will print ```Share amount``` of shares in the format of (x,y), where w and y are hexadecimals. to uncover the secret, put enough shares into a file in a format of "(x,y)", where each share is in a new line, and use the arguments ```v [share file]```. the program will print the secret (if the shares are correct and were entered correctly) 
  
  #### Sources of information I used in this implementation:
 * The Wikipedia article on "Shamir Secret Sharing" - https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing
@@ -39,3 +39,4 @@ after compiling the implementation with the gmp library, use the arguments like 
 * add program activity to SHA3har.
 * implement public key cryptographic functions (ElGamal or Rabin Cryptosystems)
 * add stream cipher option to SHA3har.
+* add a Homomorphic Cryptosystem
